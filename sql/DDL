@@ -1,0 +1,55 @@
+/**
+* 멤버 테이블 생성
+*/
+CREATE TABLE `member` (
+  `id` char(40) NOT NULL,
+  `password` char(100) NOT NULL,
+  `nickname` char(20) NOT NULL,
+  `member_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+/**
+* 공통파일관 테이블 생성
+*/
+CREATE TABLE `cmm_file` (
+  `local_file_name` char(100) NOT NULL,
+  `real_file_name` char(100) NOT NULL,
+  `file_path` char(100) NOT NULL,
+  `target_id` char(50) NOT NULL,
+  PRIMARY KEY (`local_file_name`,`target_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+/**
+* 산삼메시지 테이블 생성
+*/
+CREATE TABLE `message` (
+  `message_id` char(20) NOT NULL,
+  `sender_id` char(20) NOT NULL,
+  `reciever_id` char(20) NOT NULL,
+  `reg_date` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  PRIMARY KEY (`message_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+/**
+* 친구 테이블 생성
+*/
+CREATE TABLE `friend_relation` (
+  `my_member_id` char(50) NOT NULL,
+  `friend_member_id` char(50) NOT NULL,
+  `status` char(1) NOT NULL,
+  PRIMARY KEY (`my_member_id`,`friend_member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/**
+* 메시지 요청 테이블
+*/
+CREATE TABLE `message_request` (
+  `my_id` char(20) NOT NULL,
+  `friend_id` char(20) NOT NULL,
+  `status` char(1) NOT NULL,
+  PRIMARY KEY (`my_id`,`friend_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
